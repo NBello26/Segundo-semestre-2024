@@ -40,4 +40,17 @@ siendo del mismo tipo, o una misma entidad.
                                 Ejemplo: Libro - Copia
 
 Tarea: Definir atributos para la entidad "Cliente" y seleccionar que tipo de atributo es (Numerico, VARCHAR2, DATE)
+Cliente
+    Atributos:
+        - ID (Numerico) (Primary key)
+        - Rut (Varchar2)
+        - Nombre Completo (Varchar2)
+        - Fecha de nacimiento (DATE)
+        - Genero (Varchar2)
+        - Correo (Varchar2)
+        - Número de telefono (Numerico)
+        - Dirección (Varchar2)
+        - Fecha de registro (DATE)
+        - Estado (Varchar2)
+        - Historial (Varchar2)
 """
