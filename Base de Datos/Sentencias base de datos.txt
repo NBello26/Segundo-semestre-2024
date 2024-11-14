@@ -1,0 +1,130 @@
+ALTER TABLE empleado ADD CONSTRAINT pk_empleado PRIMARY KEY (numrun_emp); //Establece numrun_emp como clave primaria
+
+ALTER TABLE camion
+    ADD CONSTRAINT fk_camion_empleado FOREIGN KEY (numrun_emp)
+        REFERENCES empleado (numrun_emp);//Conecta Camion con Empleado
+
+ALTER TABLE camion ADD CONSTRAINT pk_camion PRIMARY KEY (nro_patente); //Establece nro_patente como clave primaria
+
+ALTER TABLE arriendo_camion
+    ADD CONSTRAINT fk_arriendocamion_camion FOREIGN KEY (nro_patente)
+        REFERENCES camion (nro_patente);//Conecta Arriendo_camion con Camion
+
+ALTER TABLE cliente
+    ADD CONSTRAINT fk_cliente_estado_civil FOREIGN KEY (id_estado_civil)
+        REFERENCES estado_civil (id_estado_civil);
+        
+SELECT * FROM marca;//Visualizar todos los datos insertados en la tabla marca
+INSERT INTO marca (id_marca,nombre_marca) VALUES (2,'Man');//Insertar Man en la tabla marca
+INSERT INTO marca (id_marca,nombre_marca) VALUES (3,'Mercedes Bemz');
+
+INSERT INTO tipo_camion (id_tipo_camion,nombre_tipo_camion) VALUES ('1','De caja');//Insertar datos en la tabla tipo_camion
+INSERT INTO tipo_camion (id_tipo_camion,nombre_tipo_camion) VALUES ('2','De plataforma');
+INSERT INTO tipo_camion (id_tipo_camion,nombre_tipo_camion) VALUES ('3','Cisterna');
+
+INSERT INTO comuna (id_comuna,nombre_comuna) VALUES (1,'Puerto Varas');//Insertar datos en la tabla comuna
+INSERT INTO comuna (id_comuna,nombre_comuna) VALUES (2,'Puerto Montt');
+INSERT INTO comuna (id_comuna,nombre_comuna) VALUES (3,'Puerto Octay');
+DELETE FROM comuna WHERE id_comuna = 3;//Elimina el dato que tenga la id = 3
+
+INSERT INTO estado_civil (id_estado_civil,nombre_estado_civil) VALUES (1,'Soltero');//Insertar datos en la tabla estado_civil
+INSERT INTO estado_civil (id_estado_civil,nombre_estado_civil) VALUES (2,'Casado');
+INSERT INTO estado_civil (id_estado_civil,nombre_estado_civil) VALUES (3,'Viudo');
+DELETE FROM estado_civil WHERE id_estado_civil = 1;//Elimina el dato que tenga la id = 3
+DELETE FROM estado_civil WHERE id_estado_civil = 2;//Elimina el dato que tenga la id = 3
+DELETE FROM estado_civil WHERE id_estado_civil = 3;//Elimina el dato que tenga la id = 3
+
+INSERT INTO tipo_cliente (id_tipo_cli,nombre_tipo_cli) VALUES ('1','Premium');//Insertar datos en la tabla tipo_cliente
+INSERT INTO tipo_cliente (id_tipo_cli,nombre_tipo_cli) VALUES ('2','Básico');
+INSERT INTO tipo_cliente (id_tipo_cli,nombre_tipo_cli) VALUES ('3','Vip');
+
+SELECT * FROM tipo_camion;//Visualizar todos los datos insertados en la tabla tipo_camion
+
+SELECT * FROM comuna;//Visualizar todos los datos insertados en la tabla comuna
+
+SELECT * FROM estado_civil;//Visualizar todos los datos insertados en la tabla estado_civil
+
+SELECT * FROM tipo_cliente;//Visualizar todos los datos insertados en la tabla tipo_cliente
+
+CREATE SEQUENCE SEQ_ECIVIL
+INCREMENT BY 10
+START WITH 100;//Secuencia que comienza en 100 y aumenta de 10 en 10
+
+DROP SEQUENCE SEQ_ECIVIL;//Elimina la secuencia de nombre SEQ_ECIVIL
+
+CREATE SEQUENCE SEQ_ECIVIL
+INCREMENT BY 5
+START WITH 10;//Secuencia que comienza en 10 y aumenta de 5 en 5
+
+SELECT SEQ_ECIVIL.NEXTVAl FROM Dual;//Establece el numero inicial para la secuencia
+
+SELECT SEQ_ECIVIL.CURRVAL FROM Dual;//Muestra el nùmero actual de la secuencia
+
+INSERT INTO estado_civil (id_estado_civil,nombre_estado_civil) VALUES (SEQ_ECIVIL.NEXTVAL,'Casado');//Insertar datos en la tabla tipo_cliente sin dar id pues se lo da la secuencia
+INSERT INTO estado_civil (id_estado_civil,nombre_estado_civil) VALUES (SEQ_ECIVIL.NEXTVAL,'Soltero');
+INSERT INTO estado_civil (id_estado_civil,nombre_estado_civil) VALUES (SEQ_ECIVIL.NEXTVAL,'Divorciado');
+
+--  Tipo cliente
+CREATE SEQUENCE SEQ_TCLIENTE
+INCREMENT BY 1
+START WITH 1;//Secuencia que comienza en 10 y aumenta de 5 en 5
+
+SELECT SEQ_TCLIENTE.NEXTVAl FROM Dual;//Establece el numero inicial para la secuencia
+
+SELECT SEQ_TCLIENTE.CURRVAL FROM Dual;//Muestra el nùmero actual de la secuencia
+
+INSERT INTO tipo_cliente VALUES (SEQ_TCLIENTE.NEXTVAL,'Premium');//Insertar datos en la tabla tipo_cliente sin dar id pues se lo da la secuencia
+INSERT INTO tipo_cliente VALUES (SEQ_TCLIENTE.NEXTVAL,'Básico');
+INSERT INTO tipo_cliente VALUES (SEQ_TCLIENTE.NEXTVAL,'Vip');
+
+SELECT * FROM tipo_cliente;
+
+DELETE FROM tipo_cliente WHERE id_tipo_cli = 5;//Elimina el dato que tenga la id = 3
+
+CREATE SEQUENCE SEQ_TSALUD
+INCREMENT BY 1
+START WITH 1;//Secuencia que comienza en 10 y aumenta de 5 en 5
+
+SELECT SEQ_TSALUD.NEXTVAl FROM Dual;//Establece el numero inicial para la secuencia
+
+SELECT SEQ_TSALUD.CURRVAL FROM Dual;//Muestra el nùmero actual de la secuencia
+
+INSERT INTO tipo_salud VALUES (SEQ_TSALUD.NEXTVAL,'ISAPRE',7);//Insertar datos en la tabla tipo_cliente sin dar id pues se lo da la secuencia
+INSERT INTO tipo_salud VALUES (SEQ_TSALUD.NEXTVAL,'FONASA',7);
+INSERT INTO tipo_salud VALUES (SEQ_TSALUD.NEXTVAL,'FUERZAS ARMADAS',6);
+
+SELECT * FROM tipo_salud;
+
+DROP SEQUENCE SEQ_TSALUD;//
+DELETE FROM tipo_salud WHERE id_tipo_sal = 3;//Elimina el dato que tenga la id = 3
+
+
+--Camion
+CREATE SEQUENCE SEQ_CAMION
+INCREMENT BY 1000
+START WITH 150;//Secuencia que comienza en 10 y aumenta de 5 en 5
+
+SELECT SEQ_CAMION.NEXTVAl FROM Dual;//Establece el numero inicial para la secuencia
+
+SELECT SEQ_CAMION.CURRVAL FROM Dual;//Muestra el nùmero actual de la secuencia
+
+INSERT INTO camion VALUES (SEQ_CAMION.NEXTVAL,'Blanco','GasLP',2014,100000,10000,'1',123456789,1);//Insertar datos en la tabla tipo_cliente sin dar id pues se lo da la secuencia
+
+SELECT * FROM camion;
+
+DROP SEQUENCE SEQ_CAMION;//
+DELETE FROM camion WHERE nro_patente = 3;//Elimina el dato que tenga la id = 3
+
+--Cliente
+SELECT * FROM comuna;
+SELECT * FROM tipo_cliente;
+SELECT * FROM estado_civil;
+INSERT INTO cliente VALUES (20000000,'1','Bello','Sepúlveda','Nicolás','Vicente','Avenida mirador',123456,123445,10000,'26-02-2002',1,3,20);//Insertar datos en la tabla tipo_cliente sin dar id pues se lo da la secuencia
+SELECT * FROM cliente;
+
+--Empleado
+SELECT * FROM comuna;
+SELECT * FROM tipo_salud;
+SELECT * FROM estado_civil;
+INSERT INTO empleado VALUES(123456789,'k','Vargas','Rogel','Rodrigo','Alejandro','Avenida desconocida 123','M',123123123,562123123,'20-03-1999','06-03-2024',450000,1,1,20);
+SELECT * FROM empleado;
